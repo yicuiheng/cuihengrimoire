@@ -16,4 +16,8 @@ int main() {
     assert(a == 0);
     a = 2;
     assert(math::power(a, 5) == 1);
+
+    // 5C2 = 10
+    math::combination_t<mod31_t, 100> comb;
+    assert(comb(5, 3) == 10);
 }

@@ -2,9 +2,11 @@
 #define CUIHENGRIMOIRE_MODINT_HPP
 
 #include <cstdint>
+#include <type_traits>
 
 namespace cuihengrimoire {
 
+// assume MOD is a prime number
 template<
     typename BaseT = std::int64_t,
     BaseT MOD = static_cast<BaseT>(1000000007),
@@ -15,12 +17,13 @@ struct modint_t {
     using value_t = BaseT;
     using this_t = modint_t<value_t, MOD>;
 
-    constexpr modint_t(value_t const& x) noexcept
+    constexpr modint_t(value_t const& x = static_cast<value_t>(0)) noexcept
     {
         this->x = x % MOD;
         if (this->x < 0)
             this->x += MOD;
     }
+    constexpr modint_t(this_t const& rhs) noexcept : x{rhs.x} {}
 
     constexpr this_t& operator=(value_t const& rhs) noexcept {
         *this = this_t{rhs};
