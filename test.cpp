@@ -20,4 +20,12 @@ int main() {
     // 5C2 = 10
     math::combination_t<mod31_t, 100> comb;
     assert(comb(5, 3) == 10);
+
+    std::vector<long long> expected1{{1, 7, 49}};
+    assert(math::divisor(49ll) == expected1);
+
+    auto prime_table = math::prime_table_t<long long, 100>{};
+    assert(prime_table.is_prime(31));
+    std::unordered_map<long long, long long> expected2{{7, 2}};
+    assert(prime_table.prime_factorization(49) == expected2);
 }
